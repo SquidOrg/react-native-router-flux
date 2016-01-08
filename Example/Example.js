@@ -6,10 +6,20 @@ var Launch = require('./components/Launch');
 var Register = require('./components/Register');
 var Login = require('./components/Login');
 var Login2 = require('./components/Login2');
+var CounterCt = require('./containers/counterCt');
 var {Router, Route, Schema, Animations, TabBar} = require('react-native-router-flux');
 var Error = require('./components/Error');
 var Home = require('./components/Home');
 var TabView = require('./components/TabView');
+
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
+import * as reducers from './reducers';
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
 
 class TabIcon extends React.Component {
     render(){
@@ -22,6 +32,7 @@ class TabIcon extends React.Component {
 export default class Example extends React.Component {
     render() {
         return (
+          <Provider store={store}>
             <Router hideNavBar={true} >
                 <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
                 <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
@@ -53,6 +64,7 @@ export default class Example extends React.Component {
                 </Route>
                 <Route name="launch" component={Launch} wrapRouter={true} title="Launch" hideNavBar={true} initial={true}/>
             </Router>
+            </Provider>
         );
     }
 }
