@@ -6,7 +6,7 @@ var Launch = require('./components/Launch');
 var Register = require('./components/Register');
 var Login = require('./components/Login');
 var Login2 = require('./components/Login2');
-var CounterCt = require('./containers/counterCt');
+var LoginCt = require('./containers/loginCt');
 var {Router, Route, Schema, Animations, TabBar} = require('react-native-router-flux');
 var Error = require('./components/Error');
 var Home = require('./components/Home');
@@ -44,7 +44,7 @@ export default class Example extends React.Component {
                 <Route name="login" schema="modal">
                     <Router>
                         <Route name="loginModal" component={Login} title="Login" schema="modal"/>
-                        <Route name="loginModal2" component={Login2} title="Login2"/>
+                        <Route name="loginModal2" component={LoginCt} title="Login2"/>
                     </Router>
                 </Route>
                 <Route name="register2" component={Register} title="Register2"  schema="withoutAnimation"/>

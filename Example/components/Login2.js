@@ -1,7 +1,13 @@
 'use strict';
 
-var React = require('react-native');
-var {View, Text, StyleSheet} = React;
+import React, {
+  StyleSheet,
+  Component,
+  View,
+  Text,
+  TouchableOpacity
+} from 'react-native';
+
 var Button = require('react-native-button');
 var Actions = require('react-native-router-flux').Actions;
 import {bindActionCreators} from 'redux';
@@ -9,7 +15,7 @@ import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
 import Counter from './counter';
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props);
   }

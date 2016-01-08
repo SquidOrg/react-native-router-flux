@@ -1,6 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react-native';
+var Actions = require('react-native-router-flux').Actions;
+
 import {bindActionCreators} from 'redux';
 import Counter from '../components/counter';
 import * as counterActions from '../actions/counterActions';
@@ -25,6 +27,6 @@ class CounterCt extends Component {
   }
 }
 
-export default connect(state => ({
+module.exports = connect(state => ({
   state: state.counter
 }))(CounterCt);

@@ -1,9 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react-native';
+var Actions = require('react-native-router-flux').Actions;
+
 import {bindActionCreators} from 'redux';
-import Login from '../components/login';
-import * as authActions from '../actions/authActions';
+import Login from '../components/loginView';
+import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
 
 // @connect(state => ({
@@ -19,12 +21,12 @@ class LoginCt extends Component {
 
     return (
       <Login
-        user={state.auth.user}
-        {...bindActionCreators(authActions, dispatch)} />
+        counter={state.count}
+        {...bindActionCreators(counterActions, dispatch)} />
     );
   }
 }
 
-export default connect(state => ({
-  state: state.auth.user
+module.exports = connect(state => ({
+  state: state.counter
 }))(LoginCt);
