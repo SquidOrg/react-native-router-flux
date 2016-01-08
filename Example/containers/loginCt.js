@@ -5,7 +5,7 @@ var Actions = require('react-native-router-flux').Actions;
 
 import {bindActionCreators} from 'redux';
 import Login from '../components/loginView';
-import * as counterActions from '../actions/counterActions';
+import * as authActions from '../actions/authActions';
 import { connect } from 'react-redux';
 
 // @connect(state => ({
@@ -17,16 +17,16 @@ class LoginCt extends Component {
   }
 
   render() {
-    const { state, dispatch } = this.props;
+    const { user, dispatch } = this.props;
 
     return (
       <Login
-        counter={state.count}
-        {...bindActionCreators(counterActions, dispatch)} />
+        user={user}
+        {...bindActionCreators(authActions, dispatch)} />
     );
   }
 }
 
 module.exports = connect(state => ({
-  state: state.counter
+  user: state.auth.user
 }))(LoginCt);

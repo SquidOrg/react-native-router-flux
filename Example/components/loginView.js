@@ -24,17 +24,15 @@ export default class Counter extends Component {
   }
 
   render() {
-    const { counter, increment, decrement } = this.props;
+    const {user, load} = this.props;
 
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{counter}</Text>
-        <TouchableOpacity onPress={increment} style={styles.button}>
+        <Text>{user}</Text>
+        <TouchableOpacity onPress={load} style={styles.button}>
           <Text>up</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={decrement} style={styles.button}>
-          <Text>down</Text>
-        </TouchableOpacity>
+
       </View>
     );
   }

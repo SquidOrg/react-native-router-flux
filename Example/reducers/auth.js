@@ -4,7 +4,7 @@ const initialState = {
   loaded: false
 };
 
-export default function reducer(state = initialState, action = {}) {
+export default function auth(state = initialState, action = {}) {
   switch (action.type) {
     case types.LOAD:
       return {
