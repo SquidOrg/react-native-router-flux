@@ -4,6 +4,7 @@ var React = require('react-native');
 var {AppRegistry, Navigator, StyleSheet,Text,View} = React;
 var Launch = require('./components/Launch');
 var Register = require('./components/Register');
+var ForgotPassword = require('./components/ForgotPassword');
 var Login = require('./components/Login');
 var Login2 = require('./components/Login2');
 var LoginCt = require('./containers/loginCt');
@@ -41,6 +42,7 @@ export default class Example extends React.Component {
 
                 <Route name="register" component={Register} title="Register"/>
                 <Route name="home" component={Home} title="Replace" type="replace"/>
+                <Route name="forgotPassword" component={ForgotPassword} title="Forgot Password" />
                 <Route name="login" schema="modal">
                     <Router>
                         <Route name="loginModal" component={Login} title="Login" schema="modal"/>
