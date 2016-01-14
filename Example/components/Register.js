@@ -7,9 +7,26 @@ var Actions = require('react-native-router-flux').Actions;
 import styles from '../styles/style';
 
 class Register extends React.Component {
+
+  constructor( props, context){
+    super(props, context);
+    this.state = {
+      newEmail:'',
+      newPassword:''
+    }
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(){
+    const {register} = this.props;
+     var email = this.state.newEmail;
+     props.register({email:this.state.newEmail, password: this.state.newPassword});
+
+   }
     render(){
 
-      const {user, register} = this.props;
+      const {user} = this.props;
+      //const { state, dispatch } = this.props;
 
         return (
           <View style={styles.container}>
@@ -24,7 +41,7 @@ class Register extends React.Component {
                           style={[styles.input, styles.whiteFont]}
                           placeholder="Enter email address"
                           placeholderTextColor="#FFF"
-                          value={user}
+                          value={this.state.newEmail}
                       />
                   </View>
                   <View style={styles.inputContainer}>
@@ -34,12 +51,12 @@ class Register extends React.Component {
                           style={[styles.input, styles.whiteFont]}
                           placeholder="Enter a Password"
                           placeholderTextColor="#FFF"
-                          value=''
+                          value={this.state.newPassword}
                       />
                   </View>
               </View>
               <View style={styles.register}>
-                <TouchableOpacity onPress={register} style={styles.button}>
+                <TouchableOpacity onPress={this.onSubmit} style={styles.button}>
                   <Text style={styles.whiteFont}>Sign Up</Text>
                 </TouchableOpacity>
 

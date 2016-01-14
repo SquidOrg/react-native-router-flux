@@ -29,4 +29,4 @@ class RegisterCt extends Component {
 
 module.exports = connect(state => ({
   user: state.auth.user
-}))(LoginCt);
+}))(Register);

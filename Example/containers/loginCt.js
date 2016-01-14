@@ -28,5 +28,5 @@ class LoginCt extends Component {
 }
 
 module.exports = connect(state => ({
-  user: state.auth.user
+  user: state.auth
 }))(LoginCt);

@@ -1,7 +1,7 @@
 import {
   POST_SIGN_IN_PATH,
   SIGN_IN_PATH
-} from 'config';
+} from '../../config';
 
 export function authRouteResolver( getState ){
   return (nextState,replaceState) => {
@@ -14,6 +14,6 @@ export function authRouteResolver( getState ){
    else if (auth.authenticated && pathname !== POST_SIGN_IN_PATH) {
      replaceState(null, POST_SIGN_IN_PATH);
    }
-   
+
   }
 }

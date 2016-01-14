@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Firebase = require('firebase');
 var {AppRegistry, Navigator, StyleSheet,Text,View} = React;
 var Launch = require('./components/Launch');
 var Register = require('./components/Register');
@@ -8,19 +9,20 @@ var ForgotPassword = require('./components/ForgotPassword');
 var Login = require('./components/Login');
 var Login2 = require('./components/Login2');
 var LoginCt = require('./containers/loginCt');
+var RegisterCt = require('./containers/registerCt');
 var {Router, Route, Schema, Animations, TabBar} = require('react-native-router-flux');
 var Error = require('./components/Error');
 var Home = require('./components/Home');
 var TabView = require('./components/TabView');
 
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { FIREBASE_ROOT } from './config';
+import createStore from './store';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 
-import * as reducers from './reducers';
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
+
+const store = createStore({
+  firebase: new Firebase(FIREBASE_ROOT)
+});
 
 class TabIcon extends React.Component {
     render(){
@@ -49,7 +51,7 @@ export default class Example extends React.Component {
                         <Route name="loginModal2" component={LoginCt} title="Login2"/>
                     </Router>
                 </Route>
-                <Route name="register2" component={Register} title="Register2"  schema="withoutAnimation"/>
+                <Route name="register2" component={RegisterCt} title="Register2"  schema="withoutAnimation"/>
                 <Route name="tabbar">
                     <Router footer={TabBar} showNavigationBar={false}>
                         <Route name="tab1" schema="tab" title="Tab #1" >

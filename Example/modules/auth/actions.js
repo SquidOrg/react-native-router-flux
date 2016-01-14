@@ -1,17 +1,19 @@
 import {
   INIT_AUTH,
   SIGN_IN_SUCCESS,
-  SIGN_OUT_SUCCESS
+  SIGN_OUT_SUCCESS,
+  CREATE_USER_FAILURE,
+  CREATE_USER_SUCCESS
 } from './action-types';
 
 
-function authenticate() {
+function authenticate(provider) {
   return (dispatch, getState) => {
     const { firebase } = getState();
 
-    firebase.authWithPassword(provider, (error, authData) => {
+    firebase.authWithOAuthPopup(provider, (error, authData) => {
       if (error) {
-        console.error('ERROR @ authWithPassword :', error); // eslint-disable-line no-console
+        console.error('ERROR @ authWithOAuthPopup :', error); // eslint-disable-line no-console
       }
       else {
         dispatch({
@@ -21,6 +23,30 @@ function authenticate() {
             timestamp: Date.now()
           }
         });
+      }
+    });
+  };
+}
+
+export function register(user) {
+  return (dispatch, getState) => {
+    const { auth, firebase } = getState();
+
+    ref.createUser({
+      email    : user.email,
+      password : user.password
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+        dispatch({
+          type: CREATE_USER_FAILURE,
+          error: error
+        })
+      } else {
+        dispatch({
+          type: CREATE_USER_SUCCESS,
+          user: userData.uid
+        })
       }
     });
   };
@@ -47,7 +73,6 @@ export function signInWithGithub() {
 export function signInWithGoogle() {
   return authenticate('google');
 }
-
 
 export function signInWithTwitter() {
   return authenticate('twitter');

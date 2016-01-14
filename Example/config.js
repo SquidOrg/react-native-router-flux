@@ -1,6 +1,6 @@
 
 
-export const FIREBASE_ROOT = 'https://todo-react-redux.firebaseio.com';
+export const FIREBASE_ROOT = 'https://beerthirty.firebaseio.com/';
 
 // Route paths
 export const SIGN_IN_PATH = '/sign-in';
